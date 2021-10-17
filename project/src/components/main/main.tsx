@@ -1,11 +1,11 @@
 import React from 'react';
 import Card from '../card/card';
 
-type typeAppProps = {
+type TMainProps = {
   countsRent: number;
 };
 
-function Main({countsRent}: typeAppProps): JSX.Element {
+function Main({countsRent}: TMainProps): JSX.Element {
   return (
     <>
       <div style={{display: 'none'}}>
