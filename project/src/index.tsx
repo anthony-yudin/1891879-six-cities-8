@@ -10,5 +10,5 @@ ReactDOM.render(
   <React.StrictMode>
     <App countsRent={DATA.countsRent} />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
