@@ -1,0 +1,20 @@
+.not-found {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.not-found__content {
+  text-align: center;
+}
+
+.not-found__link {
+  color: #4481c3;
+  display: block;
+  font-weight: normal;
+  margin-top: 10px;
+}
