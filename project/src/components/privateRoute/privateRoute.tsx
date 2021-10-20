@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
-import {AppRoute} from '../../constants/constants';
+import {AppRoutes} from '../../constants/constants';
 
-type TPrivateRoute = RouteProps & {
+type TPrivateRouteProps = RouteProps & {
   render: () => JSX.Element;
   loggedIn: boolean
 }
 
-function privateRoute(props: TPrivateRoute): JSX.Element {
+function privateRoute(props: TPrivateRouteProps): JSX.Element {
   const {exact, path, render, loggedIn} = props;
 
   return (
@@ -15,7 +15,7 @@ function privateRoute(props: TPrivateRoute): JSX.Element {
       exact={exact}
       path={path}
       render={() =>
-        loggedIn ? render() : <Redirect to={AppRoute.Login} />}
+        loggedIn ? render() : <Redirect to={AppRoutes.Login} />}
     />
   );
 }
