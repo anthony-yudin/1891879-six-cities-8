@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 
 function FormSendComment(): JSX.Element {
-  /* eslint-disable */
-  const [star, setStar] = useState<number>(0);
+  const [, setStar] = useState<number>(0);
   const [text, setText] = useState<string>('');
 
   return (

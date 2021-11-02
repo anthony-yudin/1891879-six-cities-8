@@ -1,10 +1,10 @@
-export type User = {
+export type TUser = {
   img: string,
   name: string,
   isPro: boolean,
 };
 
-export type Offer = {
+export type TOffer = {
   id: string;
   img: string;
   price: number;
@@ -16,5 +16,5 @@ export type Offer = {
   whatIs: string[];
   bedrooms: number;
   maxAdults: number;
-  user: User;
+  user: TUser;
 }

@@ -1,22 +1,36 @@
-import React from 'react';
-import {Link, generatePath} from 'react-router-dom';
-import {Offer} from '../../types/offer';
-import {AppRoutes} from '../../constants/constants';
+import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
+import {TOffer} from '../../types/offer';
 
 type TCardProps = {
-  card: Offer;
+  card: TOffer;
 }
 
 function Card({card}: TCardProps): JSX.Element {
   const stars = `${Math.floor(Number(card.stars)) * 20}%`;
+  const idCard = Number(card.id);
+  const [sortActiveId, setSortActiveId] = useState<number | null>(null);
+  const cardClasses = `cities__place-card place-card${sortActiveId === idCard ? ' cities__place-card_active' : '' }`;
+
+  function handlerMouseOverCard(id: number): void {
+    setSortActiveId(id);
+  }
+
+  function handlerMouseOutCard(): void {
+    setSortActiveId(null);
+  }
 
   return (
-    <article className="cities__place-card place-card">
+    <article
+      className={cardClasses}
+      onMouseEnter={() => handlerMouseOverCard(idCard)}
+      onMouseLeave={handlerMouseOutCard}
+    >
       <div className="place-card__mark">
         <span>{card.isPremium}</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={{pathname: generatePath(AppRoutes.Room, card)}}>
+        <Link to={`/offer/${card.id}`}>
           <img className="place-card__image" src={card.img} width="260" height="200" alt={card.name} />
         </Link>
       </div>
@@ -40,7 +54,7 @@ function Card({card}: TCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={{pathname: generatePath(AppRoutes.Room, card)}}>
+          <Link to={`/offer/${card.id}`}>
             {card.name}
           </Link>
         </h2>

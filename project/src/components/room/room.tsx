@@ -1,10 +1,10 @@
 import React from 'react';
-import { Offer } from '../../types/offer';
+import { TOffer } from '../../types/offer';
 import { useParams } from 'react-router-dom';
 import FormSendComment from '../formSendComment/formSendComment';
 
 type TRoomProps = {
-  offers: Offer[];
+  offers: TOffer[];
 }
 
 function Room({offers}: TRoomProps): JSX.Element {
@@ -12,12 +12,11 @@ function Room({offers}: TRoomProps): JSX.Element {
     id: string
   } = useParams();
 
-  const curData: Offer[] = offers.filter((item) => item.id === params.id);
+  const curData: TOffer[] = offers.filter((item) => item.id === params.id);
   const stars = `${Math.floor(Number(curData[0].stars)) * 20}%`;
 
   return (
     <>
-      {params.id} asdasdasd
       <div className="ad" style={{display: 'none'}}>
         <svg xmlns="http://www.w3.org/2000/svg">
           <symbol id="icon-arrow-select" viewBox="0 0 7 4">

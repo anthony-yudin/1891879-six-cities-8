@@ -1,15 +1,13 @@
 import React from 'react';
 //import { useState } from 'react';
 import Card from '../card/card';
-import { Offer } from '../../types/offer';
+import { TOffer } from '../../types/offer';
 
 type TCardProps = {
-  offers: Offer[];
+  offers: TOffer[];
 }
 
 function Cards({offers}: TCardProps): JSX.Element {
-  //const [sortActiveId, setSortActiveId] = useState<number | null>(null);
-
   return (
     <>
       {offers.map((item) => (

@@ -7,12 +7,11 @@ import NotFound from '../notFound/notFound';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { AppRoutes } from '../../constants/constants';
 import PrivateRoute from '../privateRoute/privateRoute';
-import { Offer } from '../../types/offer';
-import { offer } from '../../mocks/offers';
+import { TOffer } from '../../types/offer';
 
 type TAppProps = {
   countsRent: number;
-  offers: Offer[];
+  offers: TOffer[];
 }
 
 function App({countsRent, offers}: TAppProps): JSX.Element {
@@ -26,9 +25,9 @@ function App({countsRent, offers}: TAppProps): JSX.Element {
           <Login />
         </Route>
         <Route path={AppRoutes.Room} exact>
-          <Room offers={offer} />
+          <Room offers={offers} />
         </Route>
-        <PrivateRoute exact path={AppRoutes.Favorites} loggedIn render={() => <Favorites offers={offer} />} />
+        <PrivateRoute exact path={AppRoutes.Favorites} loggedIn render={() => <Favorites offers={offers} />} />
         <Route>
           <NotFound />
         </Route>

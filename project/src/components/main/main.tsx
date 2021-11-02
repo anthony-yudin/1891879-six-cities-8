@@ -1,10 +1,10 @@
 import React from 'react';
-import { Offer } from '../../types/offer';
+import { TOffer } from '../../types/offer';
 import Cards from '../cards/cards';
 
 type TMainProps = {
   countsRent: number;
-  offers: Offer[]
+  offers: TOffer[]
 };
 
 function Main({countsRent, offers}: TMainProps): JSX.Element {

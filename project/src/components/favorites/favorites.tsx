@@ -1,8 +1,9 @@
 import React from 'react';
-import { Offer } from '../../types/offer';
+import { Link } from 'react-router-dom';
+import { TOffer } from '../../types/offer';
 
 type TFavoritesProps = {
-  offers: Offer[]
+  offers: TOffer[]
 };
 
 function Favorites({offers}: TFavoritesProps): JSX.Element {
@@ -68,9 +69,9 @@ function Favorites({offers}: TFavoritesProps): JSX.Element {
                     {offers.map((item) => (
                       <article key={item.id} className="favorites__card place-card">
                         <div className="favorites__image-wrapper place-card__image-wrapper">
-                          <a href="#">
+                          <Link to={`/offer/${item.id}`}>
                             <img className="place-card__image" src={item.img} width="150" height="110" alt={item.name} />
-                          </a>
+                          </Link>
                         </div>
                         <div className="favorites__card-info place-card__info">
                           <div className="place-card__price-wrapper">
@@ -92,7 +93,7 @@ function Favorites({offers}: TFavoritesProps): JSX.Element {
                             </div>
                           </div>
                           <h2 className="place-card__name">
-                            <a href="#">{item.name}</a>
+                            <a href={`/offer/${item.id}`}>{item.name}</a>
                           </h2>
                           <p className="place-card__type">{item.type}</p>
                         </div>
