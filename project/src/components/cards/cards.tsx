@@ -1,5 +1,4 @@
 import React from 'react';
-//import { useState } from 'react';
 import Card from '../card/card';
 import { TOffer } from '../../types/offer';
 
