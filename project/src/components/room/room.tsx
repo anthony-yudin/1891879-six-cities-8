@@ -2,6 +2,7 @@ import React from 'react';
 import { TOffer } from '../../types/offer';
 import { useParams } from 'react-router-dom';
 import FormSendComment from '../formSendComment/formSendComment';
+import NotFound from '../notFound/notFound';
 
 type TRoomProps = {
   offers: TOffer[];
@@ -12,8 +13,13 @@ function Room({offers}: TRoomProps): JSX.Element {
     id: string
   } = useParams();
 
-  const curData: TOffer[] = offers.filter((item) => item.id === params.id);
-  const stars = `${Math.floor(Number(curData[0].stars)) * 20}%`;
+  const curData: TOffer | undefined = offers.find((item) => item.id === params.id);
+
+  if (!curData) {
+    return <NotFound/>;
+  }
+
+  const stars = `${Math.floor(Number(curData.stars)) * 20}%`;
 
   return (
     <>
@@ -91,7 +97,7 @@ function Room({offers}: TRoomProps): JSX.Element {
                 </div>
                 <div className="property__name-wrapper">
                   <h1 className="property__name">
-                    {curData[0].name}
+                    {curData.name}
                   </h1>
                   <button className="property__bookmark-button button" type="button">
                     <svg className="property__bookmark-icon" width="31" height="33">
@@ -105,27 +111,27 @@ function Room({offers}: TRoomProps): JSX.Element {
                     <span style={{width: stars}}/>
                     <span className="visually-hidden">Rating</span>
                   </div>
-                  <span className="property__rating-value rating__value">{curData[0].stars}</span>
+                  <span className="property__rating-value rating__value">{curData.stars}</span>
                 </div>
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
                     Apartment
                   </li>
                   <li className="property__feature property__feature--bedrooms">
-                    {curData[0].bedrooms} Bedrooms
+                    {curData.bedrooms} Bedrooms
                   </li>
                   <li className="property__feature property__feature--adults">
-                    Max {curData[0].maxAdults} adults
+                    Max {curData.maxAdults} adults
                   </li>
                 </ul>
                 <div className="property__price">
-                  <b className="property__price-value">&euro;{curData[0].price}</b>
+                  <b className="property__price-value">&euro;{curData.price}</b>
                   <span className="property__price-text">&nbsp;night</span>
                 </div>
                 <div className="property__inside">
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
-                    {curData[0].whatIs.map((item)=> (
+                    {curData.whatIs.map((item)=> (
                       <li key={item} className="property__inside-item">
                         {item}
                       </li>
@@ -136,17 +142,17 @@ function Room({offers}: TRoomProps): JSX.Element {
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
                     <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                      <img className="property__avatar user__avatar" src={curData[0].user.img} width="74" height="74" alt={curData[0].user.name}/>
+                      <img className="property__avatar user__avatar" src={curData.user.img} width="74" height="74" alt={curData.user.name}/>
                     </div>
                     <span className="property__user-name">
-                      {curData[0].user.name}
+                      {curData.user.name}
                     </span>
                     <span className="property__user-status">
-                      {curData[0].user.isPro ? 'Pro' : ''}
+                      {curData.user.isPro ? 'Pro' : ''}
                     </span>
                   </div>
                   <div className="property__description">
-                    {curData[0].description}
+                    {curData.description}
                   </div>
                 </div>
                 <section className="property__reviews reviews">
