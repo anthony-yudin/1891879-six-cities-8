@@ -1,11 +1,13 @@
 import React from 'react';
-import Card from '../card/card';
+import { TOffer } from '../../types/offer';
+import Cards from '../cards/cards';
 
 type TMainProps = {
   countsRent: number;
+  offers: TOffer[]
 };
 
-function Main({countsRent}: TMainProps): JSX.Element {
+function Main({countsRent, offers}: TMainProps): JSX.Element {
   return (
     <>
       <div style={{display: 'none'}}>
@@ -109,11 +111,7 @@ function Main({countsRent}: TMainProps): JSX.Element {
                   </ul>
                 </form>
                 <div className="cities__places-list places__list tabs__content">
-                  <Card />
-                  <Card />
-                  <Card />
-                  <Card />
-                  <Card />
+                  <Cards offers={offers} />
                 </div>
               </section>
               <div className="cities__right-section">

@@ -1,20 +1,43 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
+import {TOffer} from '../../types/offer';
 
-function Card(): JSX.Element {
+type TCardProps = {
+  card: TOffer;
+}
+
+function Card({card}: TCardProps): JSX.Element {
+  const stars = `${Math.floor(Number(card.stars)) * 20}%`;
+  const idCard = Number(card.id);
+  const [sortActiveId, setSortActiveId] = useState<number | null>(null);
+  const cardClasses = `cities__place-card place-card${sortActiveId === idCard ? ' cities__place-card_active' : '' }`;
+
+  function handlerMouseOverCard(id: number): void {
+    setSortActiveId(id);
+  }
+
+  function handlerMouseOutCard(): void {
+    setSortActiveId(null);
+  }
+
   return (
-    <article className="cities__place-card place-card">
+    <article
+      className={cardClasses}
+      onMouseEnter={() => handlerMouseOverCard(idCard)}
+      onMouseLeave={handlerMouseOutCard}
+    >
       <div className="place-card__mark">
-        <span>Premium</span>
+        <span>{card.isPremium}</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
-          <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
-        </a>
+        <Link to={`/offer/${card.id}`}>
+          <img className="place-card__image" src={card.img} width="260" height="200" alt={card.name} />
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;120</b>
+            <b className="place-card__price-value">&euro;{card.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className="place-card__bookmark-button button" type="button">
@@ -26,14 +49,16 @@ function Card(): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: '80%'}} />
+            <span style={{width: stars}} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">Beautiful &amp; luxurious apartment at great location</a>
+          <Link to={`/offer/${card.id}`}>
+            {card.name}
+          </Link>
         </h2>
-        <p className="place-card__type">Apartment</p>
+        <p className="place-card__type">{card.type}</p>
       </div>
     </article>
   );
