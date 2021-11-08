@@ -1,6 +1,9 @@
 import React from 'react';
 import { TOffer } from '../../types/offer';
 import Cards from '../cards/cards';
+import Map from '../map/map';
+import { city } from '../../mocks/city';
+import { points } from '../../mocks/points';
 
 type TMainProps = {
   countsRent: number;
@@ -115,7 +118,9 @@ function Main({countsRent, offers}: TMainProps): JSX.Element {
                 </div>
               </section>
               <div className="cities__right-section">
-                <section className="cities__map map" />
+                <section className="cities__map map">
+                  <Map city={city} points={points}  />
+                </section>
               </div>
             </div>
           </div>
