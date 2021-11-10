@@ -114,12 +114,12 @@ function Main({countsRent, offers}: TMainProps): JSX.Element {
                   </ul>
                 </form>
                 <div className="cities__places-list places__list tabs__content">
-                  <Cards offers={offers} />
+                  <Cards offers={offers} isPremium />
                 </div>
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map">
-                  <Map city={city} points={points}  />
+                  <Map city={city} points={points} />
                 </section>
               </div>
             </div>
