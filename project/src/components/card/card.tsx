@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import {TOffer} from '../../types/offer';
+import { TOffer } from '../../types/offer';
 
 type TCardProps = {
   card: TOffer;
+  isPremium: boolean;
 }
 
-function Card({card}: TCardProps): JSX.Element {
+function Card({card, isPremium}: TCardProps): JSX.Element {
   const stars = `${Math.floor(Number(card.stars)) * 20}%`;
   const idCard = Number(card.id);
   const [sortActiveId, setSortActiveId] = useState<number | null>(null);
@@ -26,9 +27,10 @@ function Card({card}: TCardProps): JSX.Element {
       onMouseEnter={() => handlerMouseOverCard(idCard)}
       onMouseLeave={handlerMouseOutCard}
     >
-      <div className="place-card__mark">
-        <span>{card.isPremium}</span>
-      </div>
+      {isPremium &&
+        <div className="place-card__mark">
+          <span>{card.isPremium}</span>
+        </div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${card.id}`}>
           <img className="place-card__image" src={card.img} width="260" height="200" alt={card.name} />

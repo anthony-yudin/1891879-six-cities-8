@@ -4,6 +4,14 @@ export type TUser = {
   isPro: boolean,
 };
 
+export type TReview = {
+  id: string,
+  user: TUser,
+  stars: number,
+  text: string,
+  date: string
+};
+
 export type TOffer = {
   id: string;
   img: string;
@@ -17,4 +25,5 @@ export type TOffer = {
   bedrooms: number;
   maxAdults: number;
   user: TUser;
+  reviews: TReview[];
 }

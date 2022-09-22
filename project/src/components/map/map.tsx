@@ -36,11 +36,7 @@ function Map({ city, points }: TMaps): JSX.Element {
   }, [map, points]);
 
   return (
-    <div
-      style={{height: '100%'}}
-      ref={mapRef}
-    >
-    </div>
+    <div style={{height: '100%'}} ref={mapRef} />
   );
 }
 
