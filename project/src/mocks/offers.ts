@@ -31,7 +31,7 @@ export const offers: TOffer[] = [
         date: '2013-09-01T00:00:00.000+08:00',
       },
       {
-        id: '1',
+        id: '2',
         user: {
           img: 'img/avatar-max.jpg',
           name: 'Max2',
